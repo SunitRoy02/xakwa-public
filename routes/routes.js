@@ -15,9 +15,9 @@ router.post('/forgotPassword',forgotPassValidation,authController.forgotPassFun)
 // router.patch('/changePassword',authController.changePasswordFun)
 
 
-//Home Screen --------
+//Banner Screen --------
 router.post('/addBanner',addBannerValidation,homeController.addBanner)
-router.post('/deleteBanner',addBannerValidation,homeController.addBanner)
+router.delete('/deleteBanner/:id',homeController.deleteBanner)
 router.get('/banners',homeController.bannersFun)
 
 

@@ -4,19 +4,6 @@ const banners = require('../models/banner');
 module.exports = {
 
     bannersFun: async (req, res) => {
-        // const axios = require('axios');
-
-        // axios.get('https://picsum.photos/v2/list?page=1&limit=5')
-        //     .then((response) => {
-        //         // Do something with the response data
-        //         console.log(response.data);
-        //         res.status(200).send({ success: true, data: response.data});
-        //     })
-        //     .catch((error) => {
-        //         console.error(error);
-        //         res.status(400).send({ success: false, msg: error });
-        //     });
-
 
         const bannrsData = await banners.find({});
         res.status(200).send({ success: true, data: bannrsData });
@@ -46,6 +33,25 @@ module.exports = {
         }
 
 
+    },
+
+    deleteBanner: async (req, res) => {
+
+        try {
+            var id = req.params.id;
+            const query = { _id: id };
+            const result = await banners.deleteOne(query);
+            if (result.deletedCount === 1) {
+                const msg = "Banner Deleted Successfully";
+                res.status(200).send({ success: true, msg: msg, });
+            }else{
+                const msg = "No matched banner found ";
+                res.status(201).send({ success: true, msg: msg, });
+            }
+        } catch (error) {
+            console.log("Error : ", error);
+            res.status(400).send({ success: false, msg: error.message });
+        }
     },
 
 }

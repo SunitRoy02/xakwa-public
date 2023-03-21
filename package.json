@@ -1,5 +1,5 @@
 {
-  "name": "e-com",
+  "name": "xakwa",
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {
@@ -17,5 +17,6 @@
     "nodemon": "^2.0.21",
     "socket.io": "^4.5.4"
   },
+  "devDependencies": {},
   "description": ""
 }

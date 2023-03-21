@@ -37,7 +37,7 @@ module.exports = {
 
             const errors = validationResult(req)
             if (!errors.isEmpty()) {
-                return res.status(400).send({ success: false, errors: errors.array()[0] });
+                return res.status(400).send({ success: false, errors: errors.array() });
             }
 
             const find = await user.find({ email: req.body.email })
@@ -53,11 +53,11 @@ module.exports = {
                
             } else {
                 const msfIferror = "User Already Exixts";
-                res.status(400).send({ success: false, msg: msfIferror });
+                res.status(200).send({ success: false, msg: msfIferror });
             }
         } catch (error) {
             console.log("Error : ", error);
-            res.status(400).send({ success: false, msg: error.message });
+            res.status(200).send({ success: false, msg: error.message });
 
         }
 
@@ -100,6 +100,28 @@ module.exports = {
 
     verifyOtpFun: async (req, res) => {
        
+        try {
+
+            const errors = validationResult(req)
+            if (!errors.isEmpty()) {
+                return res.status(400).send({ success: false, errors: errors.array()[0] });
+            }
+
+            // if (req.body.otp != '123456') {
+            //     const msfIferror = "Inavalid Otp";
+            //     res.status(200).send({ success: false, msg: msfIferror });
+
+            // } else {
+            //     //send otp work here 
+            //     const message = "Otp send successfully";
+            //     res.status(200).send({ success: true, msg: message });
+
+            // }
+        } catch (error) {
+            console.log("Error : ", error);
+            res.status(400).send({ success: false, msg: error.message });
+
+        }
 
     },
 

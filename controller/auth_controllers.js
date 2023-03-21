@@ -1,6 +1,6 @@
 const { validationResult } = require('express-validator');
-const users = require('../models/users');
 const user = require('../models/users')
+const trainerReq = require('../models/trainer')
 
 
 
@@ -94,7 +94,7 @@ module.exports = {
             console.log("Find IN Register >>> ", find);
             if (find.length === 0) {
 
-                let data = new users(req.body);
+                let data = new user(req.body);
                 let result = await data.save();
                 console.log(result);
 
@@ -153,6 +153,39 @@ module.exports = {
         }
 
     },
+
+    verifyTrainer : async (req,res) => {
+
+
+        try {
+
+            const errors = validationResult(req)
+            if (!errors.isEmpty()) {
+                return res.status(400).send({ success: false, errors: errors.array() });
+            }
+
+            const find = await trainerReq.find({ identityNumber: req.body.identityNumber })
+            console.log("Find IN Register >>> ", find);
+            if (find.length === 0) {
+
+                let data = new trainerReq(req.body);
+                let result = await data.save();
+                console.log(result);
+
+                const msfIfSuccess = "Request Submited Successfully";
+                res.status(200).send({ success: true, msg: msfIfSuccess, data: result });
+
+            } else {
+                const msfIferror = "Request Already Exixts";
+                res.status(200).send({ success: false, msg: msfIferror });
+            }
+        } catch (error) {
+            console.log("Error : ", error);
+            res.status(200).send({ success: false, msg: error.message });
+
+        }
+
+    }
 
 
 }

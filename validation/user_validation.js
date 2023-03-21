@@ -43,4 +43,12 @@ exports.verifyOtpValidation  = [
 
 ]
 
+exports.trainerVarificationValidation = [
 
+    check("firstName").notEmpty().withMessage('First Name is required'),
+    check("lastName").notEmpty().withMessage('Last Name is required'),
+    check("address").notEmpty().withMessage('Address is required'),
+    check("dob").notEmpty().withMessage('Date of Birth is required'),
+    check("identityNumber").notEmpty().withMessage('Identity number is reqiored'),
+    check("identityNumber").isLength({min:9}).withMessage('Identity number must be 9 digit long'),
+]

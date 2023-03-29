@@ -9,7 +9,11 @@ let database = require('./config');
 
 let apis = require('./routes/routes');
 app.use(express.json());
-app.use(cors());
+app.use(
+    cors({
+      origin: '*',
+    })
+  );
 app.use('/', apis);
 
 

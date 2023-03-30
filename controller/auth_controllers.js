@@ -143,7 +143,7 @@ module.exports = {
                 }
             }else {
                  const msfIfSuccess = "Otp Verified Successfully";
-                    res.status(200).send({ success: true, msg: msfIfSuccess, data: find[0] });
+                    res.status(200).send({ success: true, msg: msfIfSuccess });
             }
             
         } catch (error) {
